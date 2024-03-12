@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">testDetection</string>
+    <string name="Open_drawer_menu">Open Drawer menu\n</string>
+    <string name="Close_drawer_menu">Close Drawer menu\n</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
