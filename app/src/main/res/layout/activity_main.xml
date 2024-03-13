@@ -7,7 +7,8 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     tools:context=".MainActivity"
-    tools:openDrawer="start">
+    tools:openDrawer="start"
+    >
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -15,26 +16,23 @@
         android:orientation="vertical">
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar_shajt"
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:elevation="4dp" />
+            android:layout_height="wrap_content"
+            android:elevation="4dp"
+            android:background="@drawable/bottom_border"
+            app:title="Saját Zene"
+            app:titleTextColor="@color/DEorange"
+            app:subtitleTextColor="@color/DEorange"
+            android:outlineAmbientShadowColor="@color/DEorange"
+            android:outlineSpotShadowColor="@color/DEorange"/>
 
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/fragment_container"/>
 
-        <ListView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:choiceMode="multipleChoice"
-            android:id="@+id/osszes_zene_list_view"
-            />
-
     </LinearLayout>
-
-
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"

@@ -67,6 +67,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private NavigationView navigationView;
     private ActionBarDrawerToggle toggle;
     private ListView osszesZeneListView;
+    Toolbar toolbar;
 
     /**
      * Példa lista a lista nézet tesztelésére
@@ -102,7 +103,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         /** A navigation menü megjelenítése*/
 
-        Toolbar toolbar = findViewById(R.id.toolbar_shajt);
+        toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         drawerLayout = findViewById(R.id.drawer_layout);
@@ -216,14 +217,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (item.getItemId() == R.id.nav_osszes_zene) {
 
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new OsszesZeneFragment()).commit();
+            toolbar.setTitle("Összes Zene");
 
         } else if (item.getItemId() == R.id.nav_sajat_adatok) {
 
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new SajatAdatokFragment()).commit();
+            toolbar.setTitle("Saját Adatok");
 
         } else if (item.getItemId() == R.id.nav_regisztracio) {
 
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new RegisztracioFragment()).commit();
+            toolbar.setTitle("Regisztráció");
 
         }
         drawerLayout.closeDrawer(GravityCompat.START);

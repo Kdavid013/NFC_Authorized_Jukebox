@@ -8,11 +8,13 @@
         android:title="Saját Számok" />
     <item
         android:id="@+id/nav_osszes_zene"
-        android:title="Összes Zene" />
+        android:title="Összes Zene"
+        />
     <item
         android:id="@+id/nav_sajat_adatok"
         android:title="Saját Adatok" />
     <item
         android:id="@+id/nav_regisztracio"
-        android:title="Regisztráció" />
+        android:title="Regisztráció"
+        />
 </menu>

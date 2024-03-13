@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -78,9 +79,9 @@ public class OsszesZeneFragment extends Fragment {
             list.add(peldaErtekek[i]);
         }
 
-        CustomAdapterOsszesZene listAdapter = new CustomAdapterOsszesZene(list);
-        osszesZeneListView.setAdapter(listAdapter);
+        ListAdapter osszesZeneAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_multiple_choice,list);
 
+        osszesZeneListView.setAdapter(osszesZeneAdapter);
         return contentView;
     }
 }
