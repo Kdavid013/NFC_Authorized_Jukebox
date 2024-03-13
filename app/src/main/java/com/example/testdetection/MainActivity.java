@@ -19,7 +19,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -33,7 +32,6 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.navigation.NavigationView;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -81,13 +79,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        nfcIdTextViewRegisztracio = findViewById(R.id.nfcIdTextViewRegisztracio);
-
         //nfc adapter mely felelős az nfc eléhetőségének lekérésére
         nfcAdapter = NfcAdapter.getDefaultAdapter(this);
         if (nfcAdapter == null) {
             Toast.makeText(this, "NFC is not available", Toast.LENGTH_LONG).show();
-            finish();
             return;
         }
 
@@ -99,8 +94,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         intentFiltersArray = new IntentFilter[]{tech};
         techListsArray = new String[][]{new String[]{NfcF.class.getName()}};
 
-        /**button listener mely beolvassa a regisztrációt */
-        //insertButton = findViewById(R.id.dbInsertButton);
+//        /**button listener mely beolvassa a regisztrációt */
+//        insertButton = findViewById(R.id.dbInsertButton);
 //        insertButton.setOnClickListener(v -> {
 //            insertToDb();
 //            //logToDebug();

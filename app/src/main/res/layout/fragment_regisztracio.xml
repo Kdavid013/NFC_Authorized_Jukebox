@@ -17,7 +17,9 @@
         android:layout_marginStart="144dp"
         android:layout_marginEnd="144dp"
         android:layout_marginBottom="45dp"
-        android:text="Regisztráció" />
+        android:text="Regisztráció"
+        />
+
 
     <TextSwitcher
         android:layout_width="100dp"
