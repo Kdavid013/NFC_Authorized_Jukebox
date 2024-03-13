@@ -22,6 +22,7 @@ import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -40,6 +41,8 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private Button insertButton;
+
+    private TextView nfcIdTextViewRegisztracio;
 
     /**
      * Az adat bázis eléréséhez való váltózó
@@ -77,6 +80,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        nfcIdTextViewRegisztracio = findViewById(R.id.nfcIdTextViewRegisztracio);
 
         //nfc adapter mely felelős az nfc eléhetőségének lekérésére
         nfcAdapter = NfcAdapter.getDefaultAdapter(this);
@@ -142,6 +147,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (NfcAdapter.ACTION_TECH_DISCOVERED.equals(action)) {
             tag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
             tagId = getHex(tag.getId());
+
             //Log.d(TAG,tagId);
         }
     }
