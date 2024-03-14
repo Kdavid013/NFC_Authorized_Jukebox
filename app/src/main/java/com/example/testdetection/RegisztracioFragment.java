@@ -47,7 +47,7 @@ public class RegisztracioFragment extends Fragment {
 
     private static String tagId = "";
 
-    private static final String dbAddress = "http://192.168.31.109/temp_insert.php?NFC_id=";
+    private static final String dbAddress = "http://10.1.3.207/temp_insert.php?NFC_id=";
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -88,10 +88,7 @@ public class RegisztracioFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
-
-
-
-        //nfc adapter mely felelős az nfc eléhetőségének lekérésére
+        /**nfc adapter mely felelős az nfc eléhetőségének lekérésére*/
         nfcAdapter = NfcAdapter.getDefaultAdapter(getActivity());
         if (nfcAdapter == null) {
             Toast.makeText(getActivity(), "NFC is not available", Toast.LENGTH_LONG).show();
@@ -111,7 +108,6 @@ public class RegisztracioFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
         ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_regisztracio,null);
 
         regisztracioButton = (Button) root.findViewById(R.id.regisztracioGomb);
@@ -140,6 +136,11 @@ public class RegisztracioFragment extends Fragment {
     }
 
 
+    /**
+     * Az intentből kiszedi az adott NFC tag id-ját
+     *
+     * @param intent az a cselekvés amiből ki tudjuk szedni a NFC azonositó adatait
+     */
     private void readFromIntent(Intent intent) {
         String action = intent.getAction();
         if (NfcAdapter.ACTION_TECH_DISCOVERED.equals(action)) {
@@ -150,6 +151,11 @@ public class RegisztracioFragment extends Fragment {
         }
     }
 
+    /**
+     * Adat bázisba való adat felvitel
+     * megkapja az nfc kártya adatait és azt hozzá adja az adatbázishoz
+     * majd modosítani kell hogy egy felhasználó nevet is vigyen fel vele
+     */
 
     public void insertToDb() {
         StringRequest stringRequest = new StringRequest(Request.Method.GET, dbAddress + tagId, response -> {
@@ -161,8 +167,7 @@ public class RegisztracioFragment extends Fragment {
 
                 Toast.makeText(getActivity(), "sikertelen", Toast.LENGTH_SHORT).show();            }
         }, error -> {
-
-            Toast.makeText(getActivity(), error.toString().trim(), Toast.LENGTH_SHORT).show();        }) {
+            Toast.makeText(getActivity(), error.toString().trim(), Toast.LENGTH_SHORT).show();     }) {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 //logToDebug();
@@ -178,6 +183,11 @@ public class RegisztracioFragment extends Fragment {
         Log.d(TAG, stringRequest.toString() + requestQueue.toString());
     }
 
+    /**
+     * Át alakítja a kapott bytes tömböb egy stringé
+     *
+     * @param bytes byte tömb ami az NFC tag id-ját tartalmazza
+     */
     private String getHex(byte[] bytes) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < bytes.length; i++) {

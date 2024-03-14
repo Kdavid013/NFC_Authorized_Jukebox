@@ -1,20 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
+
     <item
         android:id="@+id/nav_sajat_szamok"
-        android:title="Saját Számok" />
+        android:title="Gyűjteményem"
+        android:icon="@drawable/gyujtemenyem"
+        />
     <item
         android:id="@+id/nav_osszes_zene"
-        android:title="Összes Zene"
+        android:title="Összes zene"
+        android:icon="@drawable/osszes_zene"
         />
     <item
         android:id="@+id/nav_sajat_adatok"
-        android:title="Saját Adatok" />
+        android:title="Saját adatok"
+        android:icon="@drawable/sajat_adatok"
+        android:iconTintMode="add"
+        android:iconTint="@color/black"
+        />
     <item
         android:id="@+id/nav_regisztracio"
         android:title="Regisztráció"
-        />
+        android:icon="@drawable/regisztracio"        />
 </menu>

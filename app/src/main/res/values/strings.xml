@@ -5,4 +5,9 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="osszes_zene">Összes Zene</string>
+
+    <string name="csatlakozas_ideje">Csatlakozás ideje:</string>
+    <string name="felhasznalo_nev">Felhasználó név:</string>
+    <string name="unipass_kartya_szama">Unipass kártya azonosítója:</string>
+    <string name="menu_text">Menü</string>
 </resources>

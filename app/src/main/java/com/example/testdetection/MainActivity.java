@@ -86,20 +86,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             return;
         }
 
-        /**létrehozok egy intentet melyből ki fogom olvasni az nfc tipusát*/
-        pendingIntent = PendingIntent.getActivity(this, 0, new Intent(this, getClass()).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), PendingIntent.FLAG_MUTABLE);
-
-        /**filter mely alapján kiválasztom milyen típusú nfc kártyákat olvassak be*/
-        IntentFilter tech = new IntentFilter(NfcAdapter.ACTION_TECH_DISCOVERED);
-        intentFiltersArray = new IntentFilter[]{tech};
-        techListsArray = new String[][]{new String[]{NfcF.class.getName()}};
-
-//        /**button listener mely beolvassa a regisztrációt */
-//        insertButton = findViewById(R.id.dbInsertButton);
-//        insertButton.setOnClickListener(v -> {
-//            insertToDb();
-//            //logToDebug();
-//        });
 
         /** A navigation menü megjelenítése*/
 
@@ -117,93 +103,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
-
-    public void onPause() {
-        super.onPause();
-        nfcAdapter.disableForegroundDispatch(this);
-        Log.d(TAG, "im on pause");
-    }
-
-    public void onResume() {
-        super.onResume();
-        nfcAdapter.enableForegroundDispatch(this, pendingIntent, intentFiltersArray, techListsArray);
-        Log.d(TAG, "i'm on resume");
-        readFromIntent(getIntent());
-
-    }
-
-    /**
-     * Az intentből kiszedi az adott NFC tag id-ját
-     *
-     * @param intent az a cselekvés amiből ki tudjuk szedni a NFC azonositó adatait
-     */
-    private void readFromIntent(Intent intent) {
-        String action = intent.getAction();
-        if (NfcAdapter.ACTION_TECH_DISCOVERED.equals(action)) {
-            tag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
-            tagId = getHex(tag.getId());
-
-            //Log.d(TAG,tagId);
-        }
-    }
-
     private void logToDebug() {
         Log.d(TAG, "itt vagyok");
     }
 
-    /**
-     * Adat bázisba való adat felvitel
-     * megkapja az nfc kártya adatait és azt hozzá adja az adatbázishoz
-     * majd modosítani kell hogy egy felhasználó nevet is vigyen fel vele
-     */
-    public void insertToDb() {
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, dbAddress + tagId, response -> {
-            //logToDebug();
-            Log.d(TAG, response);
-            if (response.equals("success")) {
-                Toast.makeText(getApplicationContext(), "sikeres regisztráció", Toast.LENGTH_SHORT).show();
-                logToDebug();
-            } else if (response.equals("failure")) {
-                logToDebug();
-                Toast.makeText(getApplicationContext(), "sikertelen", Toast.LENGTH_SHORT).show();
-            }
-        }, error -> {
-            logToDebug();
-            Toast.makeText(getApplicationContext(), error.toString().trim(), Toast.LENGTH_SHORT).show();
-        }) {
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                //logToDebug();
-                Map<String, String> data = new HashMap<>();
-                data.put("NFC_id", tagId);
-                Log.d(TAG, data.toString());
-                return data;
-            }
-        };
-        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-        requestQueue.add(stringRequest);
-
-        Log.d(TAG, stringRequest.toString() + requestQueue.toString());
-    }
-
-    /**
-     * Át alakítja a kapott bytes tömböb egy stringé
-     *
-     * @param bytes byte tömb ami az NFC tag id-ját tartalmazza
-     */
-    private String getHex(byte[] bytes) {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < bytes.length; i++) {
-            int b = bytes[i] & 0xff;
-            if (b < 0x10) sb.append('0');
-            sb.append(Integer.toHexString(b));
-            if (i >= 0) {
-                sb.append("");
-            }
-        }
-        //Log.d(TAG,sb.toString());
-        return sb.toString();
-    }
 
     /**
      * A nav menu kiválasztását figyeli az alapján dönti el mit kell megjeleníteni
@@ -229,6 +132,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new RegisztracioFragment()).commit();
             toolbar.setTitle("Regisztráció");
+
+        } else if (item.getItemId() == R.id.nav_sajat_szamok) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new SajatZenekFragment()).commit();
+            toolbar.setTitle("Saját számok");
 
         }
         drawerLayout.closeDrawer(GravityCompat.START);

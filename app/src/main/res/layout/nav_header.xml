@@ -8,4 +8,15 @@
     android:padding="16dp"
     >
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/menu_text"
+        android:textColor="@color/DEorange"
+        android:textSize="50sp"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
 </LinearLayout>

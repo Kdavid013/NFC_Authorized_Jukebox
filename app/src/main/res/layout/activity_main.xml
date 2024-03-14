@@ -23,9 +23,7 @@
             android:background="@drawable/bottom_border"
             app:title="Saját Zene"
             app:titleTextColor="@color/DEorange"
-            app:subtitleTextColor="@color/DEorange"
-            android:outlineAmbientShadowColor="@color/DEorange"
-            android:outlineSpotShadowColor="@color/DEorange"/>
+           />
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -40,7 +38,9 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:headerLayout="@layout/nav_header"
-        app:menu="@menu/navigation_menu" />
+        app:menu="@menu/navigation_menu"
+        android:theme="@style/menuItemStyle"
+        />
 
 
 </androidx.drawerlayout.widget.DrawerLayout>
