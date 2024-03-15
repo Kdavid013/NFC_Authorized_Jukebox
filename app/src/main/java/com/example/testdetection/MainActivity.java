@@ -68,7 +68,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private NavigationView navigationView;
     private ActionBarDrawerToggle toggle;
     private ListView osszesZeneListView;
-    Toolbar toolbar;
+    public Toolbar toolbar;
+
+    public void setToolbar(Toolbar toolbar) {
+        this.toolbar = toolbar;
+    }
 
     /**
      * Példa lista a lista nézet tesztelésére
@@ -78,6 +82,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new SajatZenekFragment()).commit();
 
         //nfc adapter mely felelős az nfc eléhetőségének lekérésére
         nfcAdapter = NfcAdapter.getDefaultAdapter(this);
@@ -135,7 +140,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         } else if (item.getItemId() == R.id.nav_sajat_szamok) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new SajatZenekFragment()).commit();
-            toolbar.setTitle("Saját számok");
+            toolbar.setTitle("Gyűjteményem");
 
         }
         drawerLayout.closeDrawer(GravityCompat.START);

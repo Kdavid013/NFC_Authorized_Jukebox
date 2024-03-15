@@ -24,14 +24,10 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link RegisztracioFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class RegisztracioFragment extends Fragment {
 
     Button regisztracioButton;
@@ -47,46 +43,13 @@ public class RegisztracioFragment extends Fragment {
 
     private static String tagId = "";
 
-    private static final String dbAddress = "http://10.1.3.207/temp_insert.php?NFC_id=";
+    private static final String dbAddress = "http://192.168.1.147/temp_insert.php?NFC_id=";
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public RegisztracioFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment RegisztracioFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static RegisztracioFragment newInstance(String param1, String param2) {
-        RegisztracioFragment fragment = new RegisztracioFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
 
         /**nfc adapter mely felelős az nfc eléhetőségének lekérésére*/
         nfcAdapter = NfcAdapter.getDefaultAdapter(getActivity());
@@ -97,6 +60,7 @@ public class RegisztracioFragment extends Fragment {
 
         /**létrehozok egy intentet melyből ki fogom olvasni az nfc tipusát*/
         pendingIntent = PendingIntent.getActivity(getActivity(), 0, new Intent(getActivity(), getClass()).addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT), PendingIntent.FLAG_MUTABLE);
+        //pendingIntent
 
         /**filter mely alapján kiválasztom milyen típusú nfc kártyákat olvassak be*/
         IntentFilter tech = new IntentFilter(NfcAdapter.ACTION_TECH_DISCOVERED);
@@ -111,10 +75,11 @@ public class RegisztracioFragment extends Fragment {
         ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_regisztracio,null);
 
         regisztracioButton = (Button) root.findViewById(R.id.regisztracioGomb);
-        nfcIdTextView = root.findViewById(R.id.nfcIdTextViewRegisztracio);
+        nfcIdTextView = root.findViewById(R.id.unipass_kartya_azonosito_adat);
 
         regisztracioButton.setOnClickListener(v -> {
             insertToDb();
+            SajatAdatokFragment.setCsatlakozasDatuma(new Date());
             //logToDebug();
         });
         return root;

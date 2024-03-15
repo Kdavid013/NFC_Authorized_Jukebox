@@ -3,32 +3,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".OsszesZeneFragment"
-    android:theme="@style/SajatTextview">
+    android:theme="@style/SajatAdatokTextview"
+    tools:context=".OsszesZeneFragment">
 
     <TextView
         android:id="@+id/textViewFelhasznaloNev"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/felhasznalo_nev"
         android:layout_marginTop="30dp"
-        android:textStyle="bold"/>
+        android:text="@string/felhasznalo_nev"
+        android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/textViewFelhasznaloNevAdat"
+        android:id="@+id/text_View_Felhasznalo_Nev_Adat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textViewFelhasznaloNev"
-
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="3dp" />
+        android:layout_marginStart="30dp"
+        android:text="shajtos kenyér"
+        android:theme="@style/textViewSajatAdatokAdat" />
 
     <TextView
         android:id="@+id/textViewNfcId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/text_View_Felhasznalo_Nev_Adat"
         android:text="@string/unipass_kartya_szama"
-        android:layout_below="@+id/textViewFelhasznaloNevAdat"
         android:textStyle="bold"
         />
 
@@ -37,23 +37,41 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textViewNfcId"
-        />
+        android:layout_marginStart="30dp"
+        android:text="12345678ABC"
+        android:theme="@style/textViewSajatAdatokAdat" />
 
     <TextView
         android:id="@+id/textViewCsatlakozasIdeje"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/csatlakozas_ideje"
-        android:layout_below="@id/textViewNfcIdAdat"/>
+        android:layout_below="@id/textViewNfcIdAdat"
+        android:text="@string/csatlakozas_ideje" />
 
     <TextView
         android:id="@+id/textViewCsatlakozasIdejeAdat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textViewCsatlakozasIdeje"
+        android:layout_marginStart="30dp"
+        android:text="2024.03.15"
+        android:theme="@style/textViewSajatAdatokAdat" />
 
-        />
+    <TextView
+        android:id="@+id/textViewZenekSzama"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewCsatlakozasIdejeAdat"
+        android:text="@string/csatlakozas_ideje" />
 
+    <TextView
+        android:id="@+id/textViewZenekSzamaAdat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textViewZenekSzama"
+        android:layout_marginStart="30dp"
+        android:text="312"
+        android:theme="@style/textViewSajatAdatokAdat" />
 
 
 </RelativeLayout>
