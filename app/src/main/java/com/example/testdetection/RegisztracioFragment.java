@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,8 +25,11 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class RegisztracioFragment extends Fragment {
@@ -43,7 +47,15 @@ public class RegisztracioFragment extends Fragment {
 
     private static String tagId = "";
 
-    private static final String dbAddress = "http://192.168.1.147/regisztracio.php?NFC_id=";
+    private static final String dbAddress = "http://192.168.1.147/regisztracio.php?ID=";
+
+
+    EditText felhasznaloNevET;
+    String csatlakozasIdeje;
+
+    DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,15 +83,18 @@ public class RegisztracioFragment extends Fragment {
         // Inflate the layout for this fragment
         ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_regisztracio,null);
 
-        regisztracioButton = (Button) root.findViewById(R.id.regisztracioGomb);
+
+
+        regisztracioButton = root.findViewById(R.id.regisztracioGomb);
         nfcIdTextView = root.findViewById(R.id.unipass_kartya_azonosito_adat);
+        felhasznaloNevET = root.findViewById(R.id.regisztracio_felhasznalo_nev_adat);
 
         regisztracioButton.setOnClickListener(v -> {
             insertToDb();
-            //logToDebug();
+            csatlakozasIdeje = df.format(new Date());
+            Log.d(TAG, csatlakozasIdeje);
         });
         return root;
-
     }
 
     public void onPause() {
@@ -119,7 +134,7 @@ public class RegisztracioFragment extends Fragment {
      */
 
     public void insertToDb() {
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, dbAddress + tagId, response -> {
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, dbAddress + tagId + "&fn=" + felhasznaloNevET.getText() + "&csi=" + df.format(new Date()) , response -> {
             //logToDebug();
             Log.d(TAG, response);
             if (response.equals("success")) {
@@ -141,9 +156,8 @@ public class RegisztracioFragment extends Fragment {
         RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
         requestQueue.add(stringRequest);
 
-        Log.d(TAG, stringRequest.toString() + requestQueue.toString());
+        Log.d(TAG, stringRequest.toString() + requestQueue);
     }
-
     /**
      * Át alakítja a kapott bytes tömböb egy stringé
      *
