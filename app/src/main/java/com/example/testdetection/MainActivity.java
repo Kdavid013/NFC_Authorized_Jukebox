@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     static final String regisztracioDbCim = "http://192.168.1.147/regisztracio.php?ID=";
     static final String sajatAdatLekeroCim = "http://192.168.1.147/sajatAdatLekeres.php?ID=";
+    static final String osszesZeneLekeroCim = "http://192.168.1.147/osszesZeneLekeres.php";
 
     static String tagId ="";
 
