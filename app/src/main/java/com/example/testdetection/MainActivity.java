@@ -6,73 +6,33 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import android.app.PendingIntent;
-import android.content.Intent;
-import android.content.IntentFilter;
 
-import android.nfc.NfcAdapter;
-import android.nfc.Tag;
-import android.nfc.tech.NfcF;
 import android.os.Bundle;
 
 
 import android.util.Log;
 import android.view.MenuItem;
 
-import android.widget.Button;
-import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.google.android.material.navigation.NavigationView;
 
-import java.util.HashMap;
-import java.util.Map;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    private Button insertButton;
-
-    private TextView nfcIdTextViewRegisztracio;
-
-    /**
-     * Az adat bázis eléréséhez való váltózó
-     */
-    private static final String dbAddress = "http://192.168.31.109/temp_insert.php?NFC_id=";
-    private static final String TAG = "MyActivity";
-    private static String tagId = "";
 
     /**
      * debug tag
      */
-    private static Tag tag;
-
-    //NFC-hez használatos változók
-    private NfcAdapter nfcAdapter;
-    private String[][] techListsArray;
-    PendingIntent pendingIntent;
-    private IntentFilter[] intentFiltersArray;
+    String TAG = "debug";
 
 
     /**
      * A megjelenítéshez használatos változók
      */
     private DrawerLayout drawerLayout;
-    private NavigationView navigationView;
-    private ActionBarDrawerToggle toggle;
-    private ListView osszesZeneListView;
+    NavigationView navigationView;
+    ActionBarDrawerToggle toggle;
     public Toolbar toolbar;
-
-    public void setToolbar(Toolbar toolbar) {
-        this.toolbar = toolbar;
-    }
 
     /**
      * Példa lista a lista nézet tesztelésére
@@ -83,16 +43,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new SajatZenekFragment()).commit();
-
-        //nfc adapter mely felelős az nfc eléhetőségének lekérésére
-        nfcAdapter = NfcAdapter.getDefaultAdapter(this);
-        if (nfcAdapter == null) {
-            Toast.makeText(this, "NFC is not available", Toast.LENGTH_LONG).show();
-            return;
-        }
-
-
-        /** A navigation menü megjelenítése*/
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

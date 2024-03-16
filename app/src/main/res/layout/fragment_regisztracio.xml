@@ -18,10 +18,11 @@
 
     <EditText
         android:id="@+id/regisztracio_felhasznalo_nev_adat"
-        android:layout_width="200dp"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:theme="@style/textViewSajatAdatokAdat"
+        android:textAlignment="center"
         android:inputType="text"
         />
 
@@ -41,8 +42,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/unipass_kartya_azonosito"
         android:layout_centerInParent="true"
-        android:text="TextView"
-        android:theme="@style/textViewSajatAdatokAdat"/>
+        android:theme="@style/textViewSajatAdatokAdat"
+        android:textSize="20sp"/>
 
     <Button
         android:id="@+id/regisztracioGomb"

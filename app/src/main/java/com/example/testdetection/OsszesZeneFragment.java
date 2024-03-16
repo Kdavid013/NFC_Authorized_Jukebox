@@ -33,14 +33,14 @@ public class OsszesZeneFragment extends Fragment {
         RecyclerView osszesZeneRecyclerView = root.findViewById(R.id.osszes_zene_list_view);
 
         String[] peldaErtekek = new String[]{
-                "shajt","tészta","kenyér","tej"
+                "shajt","tészta","tej"
         };
 
         List<String> list = new ArrayList<>(Arrays.asList(peldaErtekek));
 
 
         osszesZeneRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        adapter = new MyRecycleViewAdapter(list,getLayoutInflater());
+        adapter = new MyRecycleViewAdapter(list,getLayoutInflater(), R.id.text_view_for_list);
 
         osszesZeneRecyclerView.setAdapter(adapter);
         return root;

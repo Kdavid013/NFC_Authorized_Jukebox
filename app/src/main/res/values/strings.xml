@@ -9,5 +9,8 @@
     <string name="csatlakozas_ideje">Csatlakozás ideje:</string>
     <string name="felhasznalo_nev">Felhasználó név:</string>
     <string name="unipass_kartya_szama">Unipass kártya azonosítója:</string>
+    <string name="sajat_dalok_szama">Saját dalok száma:</string>
+
+    <string name="dalok_hozzaadasa">Kiválasztott dalok hozzáadása</string>
     <string name="menu_text">Menü</string>
 </resources>

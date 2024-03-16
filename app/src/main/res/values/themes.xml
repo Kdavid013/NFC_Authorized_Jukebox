@@ -9,4 +9,11 @@
     </style>
 
     <style name="Theme.TestDetection" parent="Base.Theme.TestDetection" />
+
+    <style name="ZeneHozzadadsStyle">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="background">@drawable/bottom_border</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
 </resources>

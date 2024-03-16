@@ -17,19 +17,12 @@ import java.util.Date;
 
 public class SajatAdatokFragment extends Fragment {
 
-    static String felhasznaloNev;
-    static String uniPassKartyaAzonosito;
-    static DateFormat sdf = DateFormat.getDateInstance();
-
-    EditText felhasznalóNevET;
+     TextView felhasznaloNevTV;
     TextView uniPassKartyaAzonositoTV;
     TextView csatlakozasDatumaTV;
-    private static String csatlakozasDatuma;
 
-    static public void setCsatlakozasDatuma(Date datum) {
-        String newcsatlakozasDatuma = sdf.format(datum);
-        csatlakozasDatuma = newcsatlakozasDatuma;
-    }
+    TextView sajatDalokSzamaTV;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -38,10 +31,14 @@ public class SajatAdatokFragment extends Fragment {
         ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_sajat_adatok,null);
 
         csatlakozasDatumaTV = root.findViewById(R.id.textViewCsatlakozasIdejeAdat);
-        felhasznalóNevET = root.findViewById(R.id.text_View_Felhasznalo_Nev_Adat);
+        felhasznaloNevTV = root.findViewById(R.id.text_View_Felhasznalo_Nev_Adat);
         uniPassKartyaAzonositoTV = root.findViewById(R.id.textViewNfcIdAdat);
+        sajatDalokSzamaTV = root.findViewById(R.id.textViewZenekSzamaAdat);
 
-        csatlakozasDatumaTV.setText(csatlakozasDatuma);
+        csatlakozasDatumaTV.setText("");
+        felhasznaloNevTV.setText("");
+        uniPassKartyaAzonositoTV.setText("");
+        sajatDalokSzamaTV.setText("");
 
 
         // Inflate the layout for this fragment

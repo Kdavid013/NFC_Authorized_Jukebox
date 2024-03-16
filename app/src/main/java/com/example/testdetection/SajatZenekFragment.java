@@ -38,7 +38,7 @@ public class SajatZenekFragment extends Fragment {
 
 
         recyclerViewSajatZenek.setLayoutManager(new LinearLayoutManager(getActivity()));
-        MyRecycleViewAdapter adapter = new MyRecycleViewAdapter(list,getLayoutInflater());
+        MyRecycleViewAdapter adapter = new MyRecycleViewAdapter(list,getLayoutInflater(),R.id.text_view_for_list);
 
         recyclerViewSajatZenek.setAdapter(adapter);
 

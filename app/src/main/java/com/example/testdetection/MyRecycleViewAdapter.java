@@ -1,5 +1,6 @@
 package com.example.testdetection;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,9 +16,14 @@ public class MyRecycleViewAdapter  extends RecyclerView.Adapter<MyRecycleViewAda
     private List<String> mData;
     private LayoutInflater mInflater;
 
-    public MyRecycleViewAdapter(List<String> mData, LayoutInflater mInflater) {
+    int listaElemKinezet;
+
+
+
+    public MyRecycleViewAdapter(List<String> mData, LayoutInflater mInflater, int listaElemKinezet) {
         this.mData = mData;
         this.mInflater = mInflater;
+        this.listaElemKinezet = listaElemKinezet;
     }
 
     @NonNull
@@ -41,9 +47,10 @@ public class MyRecycleViewAdapter  extends RecyclerView.Adapter<MyRecycleViewAda
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView myTextView;
 
+        @SuppressLint("ResourceType")
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            myTextView = itemView.findViewById(R.id.text_view_for_list_item);
+            myTextView = itemView.findViewById(listaElemKinezet);
         }
 
         @Override

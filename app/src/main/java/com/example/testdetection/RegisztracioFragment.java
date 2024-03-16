@@ -43,10 +43,7 @@ public class RegisztracioFragment extends Fragment {
 
     private static String tagId = "";
 
-    private static final String dbAddress = "http://192.168.1.147/temp_insert.php?NFC_id=";
-
-
-
+    private static final String dbAddress = "http://192.168.1.147/regisztracio.php?NFC_id=";
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,7 +76,6 @@ public class RegisztracioFragment extends Fragment {
 
         regisztracioButton.setOnClickListener(v -> {
             insertToDb();
-            SajatAdatokFragment.setCsatlakozasDatuma(new Date());
             //logToDebug();
         });
         return root;
@@ -164,6 +160,6 @@ public class RegisztracioFragment extends Fragment {
             }
         }
         //Log.d(TAG,sb.toString());
-        return sb.toString();
+        return sb.toString().toUpperCase();
     }
 }
