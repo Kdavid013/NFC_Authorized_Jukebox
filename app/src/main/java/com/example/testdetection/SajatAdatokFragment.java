@@ -53,7 +53,7 @@ public class SajatAdatokFragment extends Fragment {
             StringRequest stringRequest = new StringRequest(Request.Method.GET, MainActivity.sajatAdatLekeroCim + MainActivity.tagId, response -> {
                 //logToDebug();
                 Log.d("Debug", response);
-                String[] data = response.split(" ");
+                String[] data = response.split(";");
                 felhasznaloNevTV.setText(data[1]);
                 uniPassKartyaAzonositoTV.setText(data[0]);
                 csatlakozasDatumaTV.setText(data[2]);

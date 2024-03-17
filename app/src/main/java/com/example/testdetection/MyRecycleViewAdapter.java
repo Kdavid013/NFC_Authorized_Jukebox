@@ -16,14 +16,11 @@ public class MyRecycleViewAdapter  extends RecyclerView.Adapter<MyRecycleViewAda
     private List<String> mData;
     private LayoutInflater mInflater;
 
-    int listaElemKinezet;
-
 
 
     public MyRecycleViewAdapter(List<String> mData, LayoutInflater mInflater, int listaElemKinezet) {
         this.mData = mData;
         this.mInflater = mInflater;
-        this.listaElemKinezet = listaElemKinezet;
     }
 
     @NonNull
@@ -50,7 +47,7 @@ public class MyRecycleViewAdapter  extends RecyclerView.Adapter<MyRecycleViewAda
         @SuppressLint("ResourceType")
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            myTextView = itemView.findViewById(listaElemKinezet);
+            myTextView = itemView.findViewById(R.id.text_view_for_list);
         }
 
         @Override

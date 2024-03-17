@@ -63,7 +63,7 @@ public class RegisztracioFragment extends Fragment {
 
         regisztracioButton.setOnClickListener(v -> {
 
-            if (!(tagId.equals("") || felhasznaloNevET.getText().toString().equals(""))) {
+            if (!(nfcIdTextView.getText().equals("") || felhasznaloNevET.getText().toString().equals(""))) {
                 insertToDb();
                 nfcIdTextView.setText("");
                 felhasznaloNevET.setText("");
