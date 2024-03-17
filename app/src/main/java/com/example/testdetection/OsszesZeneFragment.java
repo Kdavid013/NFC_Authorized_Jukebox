@@ -49,8 +49,15 @@ public class OsszesZeneFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Log.d("DEBUG",adapter.listItemSelected());
-                kivalasztottZenekHozzadasaGyujtemenyhez(adapter.listItemSelected());
+                //Log.d("DEBUG",adapter.listItemSelected());
+                String kivalasztottLista = adapter.listItemSelected();
+                if(!(MainActivity.tagId.equals("") || kivalasztottLista.equals("&zenek="))){
+                    kivalasztottZenekHozzadasaGyujtemenyhez(kivalasztottLista);
+                }
+                else {
+                    Toast.makeText(getActivity(),"Probléma történt. Kérem ellenőrizze hogy van-e kártya csatlakoztatva a telefonhoz és választott zenét.",Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
         return root;
@@ -83,14 +90,13 @@ public class OsszesZeneFragment extends Fragment {
 
     }
     public void kivalasztottZenekHozzadasaGyujtemenyhez(String kivalasztottZenek){
+
         StringRequest stringRequest = new StringRequest(Request.Method.GET, MainActivity.kivalasztottZenekHozzaadasa + MainActivity.tagId +kivalasztottZenek, response -> {
 
             if(response.equals("success")){
                 Toast.makeText(getActivity(),"A dalok sikeresen hozzá lettek adva a Gyűjteményhez.",Toast.LENGTH_SHORT).show();
-            } else
-            {
-                Toast.makeText(getActivity(),"Probléma történt. Kérem ellenőrizze hogy van e kártya csatlakoztatva a telefonhoz.",Toast.LENGTH_SHORT).show();
             }
+
         }, error -> {
             Toast.makeText(getActivity(), error.toString().trim(), Toast.LENGTH_SHORT).show();
         }) {
