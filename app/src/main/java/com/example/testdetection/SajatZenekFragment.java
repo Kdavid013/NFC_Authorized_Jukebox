@@ -41,13 +41,13 @@ public class SajatZenekFragment extends Fragment {
          root = inflater.inflate(R.layout.fragment_sajat_zenek,container,false);
 
         if (MainActivity.tagId == ""){
-            Toast.makeText(getActivity(),"Érintse kártyájáz a telefonhoz a gyüjteménye megtekintéséhez.",Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(),"Érintse kártyáját a telefonhoz a gyüjteménye megtekintéséhez.",Toast.LENGTH_LONG).show();
         }
         else {
             gyujtemenyLekerese();
         }
         sajatDalokSzamaTV = root.findViewById(R.id.sajat_dalok_szama);
-        sajatDalokSzamaTV.setText(String.valueOf(sajatDalokSzama));
+
 
         // Inflate the layout for this fragment
         return root;
@@ -60,6 +60,7 @@ public class SajatZenekFragment extends Fragment {
             gyujtemeny = response.split(";");
 
             sajatDalokSzama = gyujtemeny.length;
+            sajatDalokSzamaTV.setText(String.valueOf(sajatDalokSzama));
 
             List<String> list = new ArrayList<String>();
             list.addAll(Arrays.asList(gyujtemeny));

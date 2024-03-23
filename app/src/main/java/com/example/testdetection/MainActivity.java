@@ -83,8 +83,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             return;
         }
 
+
+
         /**létrehozok egy intentet melyből ki fogom olvasni az nfc tipusát*/
-        pendingIntent = PendingIntent.getActivity(this, 0, new Intent(this, getClass()).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP), PendingIntent.FLAG_MUTABLE);
+        pendingIntent = PendingIntent.getActivity(this, 0, new Intent(this, getClass()).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), PendingIntent.FLAG_MUTABLE);
         //pendingIntent
 
         /**filter mely alapján kiválasztom milyen típusú nfc kártyákat olvassak be*/
@@ -92,7 +94,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         intentFiltersArray = new IntentFilter[]{tech};
         techListsArray = new String[][]{new String[]{NfcF.class.getName()}};
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new SajatZenekFragment()).commit();
+
+
     }
 
     private void logToDebug() {
@@ -110,6 +113,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         nfcAdapter.enableForegroundDispatch(this, pendingIntent, intentFiltersArray, techListsArray);
         readFromIntent(this.getIntent());
         //nfcIdTextView.setText(tagId);
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new SajatZenekFragment()).commit();
     }
 
     /**
@@ -121,7 +126,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         String action = intent.getAction();
         if (NfcAdapter.ACTION_TECH_DISCOVERED.equals(this.getIntent().getAction())) {
             Tag tag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
-            MainActivity.tagId = getHex(tag.getId());
+            tagId = getHex(tag.getId());
             //Log.d(TAG,tagId);
         }
     }

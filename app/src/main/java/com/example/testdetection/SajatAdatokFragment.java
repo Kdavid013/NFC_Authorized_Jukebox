@@ -53,11 +53,17 @@ public class SajatAdatokFragment extends Fragment {
             StringRequest stringRequest = new StringRequest(Request.Method.GET, MainActivity.sajatAdatLekeroCim + MainActivity.tagId, response -> {
                 //logToDebug();
                 Log.d("Debug", response);
-                String[] data = response.split(";");
-                felhasznaloNevTV.setText(data[1]);
-                uniPassKartyaAzonositoTV.setText(data[0]);
-                csatlakozasDatumaTV.setText(data[2]);
-                sajatDalokSzamaTV.setText(String.valueOf(SajatZenekFragment.sajatDalokSzama));
+                if(response.equals("Nem regisztrált.")){
+                    Toast.makeText(getActivity(),"A kártya még nem regisztrált.",Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    String[] data = response.split(";");
+                    felhasznaloNevTV.setText(data[1]);
+                    uniPassKartyaAzonositoTV.setText(data[0]);
+                    csatlakozasDatumaTV.setText(data[2]);
+                    sajatDalokSzamaTV.setText(String.valueOf(SajatZenekFragment.sajatDalokSzama));
+                }
+
             }, error -> {
                 Toast.makeText(getActivity(), error.toString().trim(), Toast.LENGTH_SHORT).show();
             }) {
