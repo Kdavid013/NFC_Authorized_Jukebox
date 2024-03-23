@@ -24,6 +24,7 @@
             android:text="Saját zenéim száma:"
             />
         <TextView
+            android:id="@+id/sajat_dalok_szama"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="123"

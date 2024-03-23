@@ -11,7 +11,7 @@
     <tech-list>
         <tech>android.nfc.tech.IsoDep</tech>
         <tech>android.nfc.tech.NfcA</tech>
-        <tech>android.nfc.tech.NdefFormatable</tech>
+<!--        <tech>android.nfc.tech.NdefFormatable</tech>-->
     </tech-list>
     <tech-list>
         <tech>android.nfc.tech.NfcA</tech>

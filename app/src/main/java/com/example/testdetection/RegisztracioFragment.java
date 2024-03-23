@@ -33,11 +33,6 @@ public class RegisztracioFragment extends Fragment {
     Button regisztracioButton;
     TextView nfcIdTextView;
 
-    private NfcAdapter nfcAdapter;
-    private String[][] techListsArray;
-    PendingIntent pendingIntent;
-    private IntentFilter[] intentFiltersArray;
-
     private static Tag tag;
     private static final String TAG = "MyActivity";
 
@@ -59,7 +54,14 @@ public class RegisztracioFragment extends Fragment {
         nfcIdTextView = root.findViewById(R.id.unipass_kartya_azonosito_adat);
         felhasznaloNevET = root.findViewById(R.id.regisztracio_felhasznalo_nev_adat);
 
-        nfcIdTextView.setText(MainActivity.tagId);
+        if (MainActivity.tagId.equals("")){
+            nfcIdTextView.setText("Érintse a Unipass kártyáját a telefon NFC-jéhez.");
+            nfcIdTextView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+        }
+        else{
+            nfcIdTextView.setText(MainActivity.tagId);
+        }
+
 
         regisztracioButton.setOnClickListener(v -> {
 
@@ -88,8 +90,7 @@ public class RegisztracioFragment extends Fragment {
                 if (response.equals("success")) {
                     Toast.makeText(getActivity(), "sikeres regisztráció", Toast.LENGTH_SHORT).show();
                 } else if (response.equals("failure")) {
-
-                    Toast.makeText(getActivity(), "sikertelen", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "sikertelen regisztráció", Toast.LENGTH_SHORT).show();
                 } else{
                     Toast.makeText(getActivity(), "A kártya már regisztrálva van", Toast.LENGTH_SHORT).show();
                 }

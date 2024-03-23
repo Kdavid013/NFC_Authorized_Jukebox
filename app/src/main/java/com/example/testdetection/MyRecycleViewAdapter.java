@@ -18,7 +18,7 @@ public class MyRecycleViewAdapter  extends RecyclerView.Adapter<MyRecycleViewAda
 
 
 
-    public MyRecycleViewAdapter(List<String> mData, LayoutInflater mInflater, int listaElemKinezet) {
+    public MyRecycleViewAdapter(List<String> mData, LayoutInflater mInflater) {
         this.mData = mData;
         this.mInflater = mInflater;
     }

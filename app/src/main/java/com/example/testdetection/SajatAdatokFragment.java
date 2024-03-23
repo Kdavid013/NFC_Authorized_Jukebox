@@ -57,6 +57,7 @@ public class SajatAdatokFragment extends Fragment {
                 felhasznaloNevTV.setText(data[1]);
                 uniPassKartyaAzonositoTV.setText(data[0]);
                 csatlakozasDatumaTV.setText(data[2]);
+                sajatDalokSzamaTV.setText(String.valueOf(SajatZenekFragment.sajatDalokSzama));
             }, error -> {
                 Toast.makeText(getActivity(), error.toString().trim(), Toast.LENGTH_SHORT).show();
             }) {

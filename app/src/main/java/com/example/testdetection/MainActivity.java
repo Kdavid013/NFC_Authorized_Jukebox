@@ -30,10 +30,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     static final String regisztracioDbCim = "http://192.168.1.147/regisztracio.php?ID=";
     static final String sajatAdatLekeroCim = "http://192.168.1.147/sajatAdatLekeres.php?ID=";
     static final String osszesZeneLekeroCim = "http://192.168.1.147/osszesZeneLekeres.php";
-
     static final String kivalasztottZenekHozzaadasa = "http://192.168.1.147/zene_hozzadas_gyujtemenyhez.php?ID=";
+    static final String gyujtemenyLekeres = "http://192.168.1.147/gyujtemenyLekeres.php?ID=";
     static String tagId ="";
-
     private NfcAdapter nfcAdapter;
     private String[][] techListsArray;
     PendingIntent pendingIntent;
@@ -61,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new SajatZenekFragment()).commit();
+
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -85,13 +84,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
 
         /**létrehozok egy intentet melyből ki fogom olvasni az nfc tipusát*/
-        pendingIntent = PendingIntent.getActivity(this, 0, new Intent(this, getClass()).addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT), PendingIntent.FLAG_MUTABLE);
+        pendingIntent = PendingIntent.getActivity(this, 0, new Intent(this, getClass()).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP), PendingIntent.FLAG_MUTABLE);
         //pendingIntent
 
         /**filter mely alapján kiválasztom milyen típusú nfc kártyákat olvassak be*/
         IntentFilter tech = new IntentFilter(NfcAdapter.ACTION_TECH_DISCOVERED);
         intentFiltersArray = new IntentFilter[]{tech};
         techListsArray = new String[][]{new String[]{NfcF.class.getName()}};
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new SajatZenekFragment()).commit();
     }
 
     private void logToDebug() {

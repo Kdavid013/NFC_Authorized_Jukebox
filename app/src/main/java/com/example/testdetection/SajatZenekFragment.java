@@ -12,7 +12,14 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.Toolbar;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -21,28 +28,56 @@ import java.util.List;
 
 public class SajatZenekFragment extends Fragment {
 
-    RecyclerView recyclerViewSajatZenek;
+    MyRecycleViewAdapter adapter;
+    String[] gyujtemeny;
+    View root;
+    TextView sajatDalokSzamaTV;
 
+    static int sajatDalokSzama;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_sajat_zenek,null);
+         root = inflater.inflate(R.layout.fragment_sajat_zenek,container,false);
 
-        recyclerViewSajatZenek = root.findViewById(R.id.sajatZenekListView);
-
-        String[] peldaErtekek = new String[]{
-                "shajt","tészta","kenyér","tej"
-        };
-        List<String> list = new ArrayList<>(Arrays.asList(peldaErtekek));
-
-
-        recyclerViewSajatZenek.setLayoutManager(new LinearLayoutManager(getActivity()));
-        MyRecycleViewAdapter adapter = new MyRecycleViewAdapter(list,getLayoutInflater(),R.id.text_view_for_list);
-
-        recyclerViewSajatZenek.setAdapter(adapter);
+        if (MainActivity.tagId == ""){
+            Toast.makeText(getActivity(),"Érintse kártyájáz a telefonhoz a gyüjteménye megtekintéséhez.",Toast.LENGTH_LONG).show();
+        }
+        else {
+            gyujtemenyLekerese();
+        }
+        sajatDalokSzamaTV = root.findViewById(R.id.sajat_dalok_szama);
+        sajatDalokSzamaTV.setText(String.valueOf(sajatDalokSzama));
 
         // Inflate the layout for this fragment
         return root;
+
+    }
+
+    public void gyujtemenyLekerese() {
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, MainActivity.gyujtemenyLekeres + MainActivity.tagId, response -> {
+            //logToDebug();
+            gyujtemeny = response.split(";");
+
+            sajatDalokSzama = gyujtemeny.length;
+
+            List<String> list = new ArrayList<String>();
+            list.addAll(Arrays.asList(gyujtemeny));
+
+            RecyclerView gyujtemenyRecyclerView = root.findViewById(R.id.sajatZenekListView);
+
+            gyujtemenyRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+            adapter = new MyRecycleViewAdapter(list,getLayoutInflater());
+
+
+            gyujtemenyRecyclerView.setAdapter(adapter);
+
+        }, error -> {
+            Toast.makeText(getActivity(), error.toString().trim(), Toast.LENGTH_SHORT).show();
+        }) {
+        };
+        RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
+        requestQueue.add(stringRequest);
+
     }
 }

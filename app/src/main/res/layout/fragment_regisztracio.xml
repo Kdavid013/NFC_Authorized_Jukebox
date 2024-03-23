@@ -43,7 +43,7 @@
         android:layout_below="@+id/unipass_kartya_azonosito"
         android:layout_centerInParent="true"
         android:theme="@style/textViewSajatAdatokAdat"
-        android:textSize="20sp"/>
+        android:textSize="20sp" />
 
     <Button
         android:id="@+id/regisztracioGomb"
