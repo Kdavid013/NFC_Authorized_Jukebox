@@ -12,6 +12,7 @@
         android:choiceMode="multipleChoice" />
 
     <Button
+        android:id="@+id/dalok_hozzadas_gomb"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/dalok_hozzaadasa"
